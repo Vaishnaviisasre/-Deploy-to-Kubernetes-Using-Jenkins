@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'Jenkins-Agent' }
+    agent { label 'Jenkins-agent' }
     tools {
         jdk 'Java17'
         maven 'Maven3'
@@ -10,24 +10,25 @@ pipeline {
                 cleanWs()
                 }
         }
-
+ 
         stage("Checkout from SCM"){
                 steps {
                     git branch: 'main', credentialsId: 'github', url: 'https://github.com/Vaishnaviisasre/-Deploy-to-Kubernetes-Using-Jenkins.git'
                 }
         }
-
+ 
         stage("Build Application"){
             steps {
                 sh "mvn clean package"
             }
-
+ 
        }
-
+ 
        stage("Test Application"){
            steps {
                  sh "mvn test"
            }
        }
-    }
+ 
+    } 
 }
